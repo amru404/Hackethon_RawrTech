@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_order');
             $table->foreignId('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
-            $table->string('nama_pemesan');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('qty');
             $table->decimal('total_harga', 15,2);
             $table->date('tanggal_ticket');

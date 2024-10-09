@@ -10,42 +10,31 @@
   </div>
   <!-- /menu profile quick info -->
 
- 
-
-  @if (Auth::user()->role === 'penjual')
+  @if (Auth::user()->role === 'admin')
   <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
           <h3>General</h3>
           <ul class="nav side-menu">
             
 
-            <li><a href="{{route('penjual.product')}}">
-                <i class="fa fa-laptop"></i>Products</a>
+            <li><a href="{{route('admin.product')}}">
+            <i class="fa-regular fa-user"></i> User</a>
             </li>
 
-            <li><a href="{{route('penjual.sales')}}">
-                <i class="fa fa-laptop"></i>Orders</a>
+            <li><a href="{{route('admin.product')}}">
+            <i class="fa-solid fa-tree"></i> Product</a>
             </li>
 
-          </ul>
-      </div>
-
-  </div>
-  @endif
-
-  @if (Auth::user()->role === 'pembeli')
-  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-      <div class="menu_section">
-          <h3>General</h3>
-          <ul class="nav side-menu">
-            
-
-            <li><a href="{{route('pembeli.product')}}">
-                <i class="fa fa-laptop"></i>Products</a>
+            <li><a href="{{route('admin.ticket')}}">
+            <i class="fa-solid fa-ticket"></i> Ticket</a>
             </li>
 
-            <li><a href="{{route('pembeli.sales')}}">
-                <i class="fa fa-laptop"></i>Orders</a>
+            <li><a href="{{route('admin.order')}}">
+            <i class="fa-solid fa-cart-shopping"></i> Order</a>
+            </li>
+
+            <li><a href="{{route('admin.transaksi')}}">
+            <i class="fa-solid fa-money-bills"></i> Transaksi</a>
             </li>
 
           </ul>

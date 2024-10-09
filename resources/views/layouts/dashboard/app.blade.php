@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
     <title>Gentelella Alela! | </title>
 
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap -->
     <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- NProgress -->
     <link href="{{ asset('vendors/nprogress/nprogress.css') }}" rel="stylesheet">
     <!-- iCheck -->
     <link href="{{ asset('vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
-	
+
     <!-- bootstrap-progressbar -->
     <link href="{{ asset('vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
     <!-- JQVMap -->
-    <link href="{{ asset('vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 
@@ -32,49 +37,68 @@
     <!-- DataTable -->
     <link href="{{asset ('vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{asset ('vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{asset ('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{asset ('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}"
+        rel="stylesheet">
     <link href="{{asset ('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{asset ('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
-  </head>
+</head>
 
-  <body class="nav-md">
+<body class="nav-md">
     <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella
+                                Alela!</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    @include('layouts.dashboard.sidebar-menu')
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+
+                    <!-- /menu footer buttons -->
+                </div>
             </div>
 
-            <div class="clearfix"></div>
+            <!-- top navigation -->
+            @include('layouts.dashboard.top-nav')
+            <!-- /top navigation -->
 
-            <br />
+            <!-- page content -->
+            <div class="right_col p-5" role="main">
+                <div class="card p-5">
+                    @yield('content')
+                </div>
+            </div>
+            <!-- /page content -->
 
-            <!-- sidebar menu -->
-            @include('layouts.dashboard.sidebar-menu')
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-          
-            <!-- /menu footer buttons -->
-          </div>
+            <!-- footer content -->
+            @include('layouts.dashboard.footer')
+            <!-- /footer content -->
         </div>
-
-        <!-- top navigation -->
-        @include('layouts.dashboard.top-nav')
-        <!-- /top navigation -->
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-          @yield('content')
-        </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-      @include('layouts.dashboard.footer')
-        <!-- /footer content -->
-      </div>
     </div>
+
+    <!-- alert time 3S -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const alerts = document.getElementsByClassName('alert');
+            Array.from(alerts).forEach(function (alert) {
+                setTimeout(function () {
+                    alert.style.display = 'none';
+                }, 3000);
+            });
+        });
+
+    </script>
+
+
 
     <!-- jQuery -->
     <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
@@ -129,7 +153,8 @@
     <script src="{{asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
     <script src="{{asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
-    <script src="{{asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>  
+    <script src="{{asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
 
-  </body>
+</body>
+
 </html>

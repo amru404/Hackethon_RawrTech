@@ -7,5 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory; 
+    protected $table = 'products';
+
+    protected $fillable = [
+        'nama',
+        'deskripsi',
+        'fitur',
+        'latitude',
+        'longtitude',
+        'nomor_telepon',
+        'harga',
+        'slug',
+    ];
+
+    public function ticket()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    
 }
