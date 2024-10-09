@@ -30,13 +30,6 @@ class OrderController extends Controller
         return view('admin.order.add',compact('ticket','user'));
     }
 
-    public function test()
-    {
-        $ticket = Ticket::all();
-        $user = User::all();
-
-        return view('admin.order.test',compact('ticket','user'));
-    }
 
     /**
      * Store a newly created resource in storage.

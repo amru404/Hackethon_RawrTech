@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\imageProductController;
+use App\Http\Controllers\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +20,16 @@ use App\Http\Controllers\TransaksiController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('layouts.index');
+// });
 
-Route::get('/home', function () {
-    return view('home');
-});
-
+Route::get('/', [LandingController::class, 'home'])->name('home');
+Route::get('user/ticket', [LandingController::class, 'checkTicket'])->name('user.ticket');
+Route::post('user/order', [LandingController::class, 'store'])->name('user.order');
+Route::get('user/order/data', [LandingController::class, 'orderData'])->name('user.order.data');
+Route::post('user/transaksi/store', [LandingController::class, 'createTransaksi'])->name('user.transaksi.store');
+Route::get('user/transaksi/data', [LandingController::class, 'dataTransaksi'])->name('user.transaksi.data');
 Auth::routes();
 
 
@@ -37,6 +41,7 @@ Route::middleware(['auth', 'user-permission:admin'])->group(function () {
     Route::get('/admin/product', [ProductController::class, 'index'])->name('admin.product');
     Route::get('/admin/product/add', [ProductController::class, 'create'])->name('admin.product.add');
     Route::POST('/admin/product/store', [ProductController::class, 'store'])->name('admin.product.store');
+    Route::get('/admin/product/show/{id}', [ProductController::class, 'show'])->name('admin.product.show');
     Route::get('/admin/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
     Route::PUT('/admin/product/update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
     Route::get('/admin/product/destroy/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
@@ -51,7 +56,7 @@ Route::middleware(['auth', 'user-permission:admin'])->group(function () {
  
       //route admin order
       Route::get('/admin/order', [OrderController::class, 'index'])->name('admin.order');
-      Route::get('/admin/order/add', [OrderController::class, 'test'])->name('admin.order.add');
+      Route::get('/admin/order/add', [OrderController::class, 'create'])->name('admin.order.add');
       Route::POST('/admin/order/store', [OrderController::class, 'store'])->name('admin.order.store');
       Route::get('/admin/order/show/{id}', [OrderController::class, 'show'])->name('admin.order.show');
       Route::get('/admin/order/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit');
@@ -66,6 +71,9 @@ Route::middleware(['auth', 'user-permission:admin'])->group(function () {
       Route::PUT('/admin/transaksi/update/{id}', [TransaksiController::class, 'update'])->name('admin.transaksi.update');
       Route::get('/admin/transaksi/destroy/{id}', [TransaksiController::class, 'destroy'])->name('admin.transaksi.destroy');
   
+      Route::get('/admin/image', [imageProductController::class, 'index'])->name('admin.image');
+      Route::post('/admin/image/store', [imageProductController::class, 'imageUpload'])->name('admin.image.store');
+
 });
 
   

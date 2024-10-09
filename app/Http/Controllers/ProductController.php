@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ImageProduct;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::all();
+        $product = Product::with('images')->get();
 
         return view('admin.product.index', compact('product'));
     }
@@ -41,30 +43,45 @@ class ProductController extends Controller
             'nomor_telepon' => 'required|string',
             'harga'    => 'required|numeric',
             'slug'    => 'required|string',
+            'image' => 'required',
+            'image.*' => 'image|mimes:jpeg,jpg,png,svg|max:5120',
         ]);
 
-        Product::create([
-            'nama'     => $request->nama,
-            'deskripsi'     => $request->deskripsi,
-            'fitur'     => $request->fitur,
-            'latitude'     => $request->latitude,
-            'longtitude'     => $request->longtitude,
-            'nomor_telepon'     => $request->nomor_telepon,
-            'harga'    => $request->harga,
-            'slug'    => $request->nama,
+        $product = Product::create([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'fitur' => $request->fitur,
+            'latitude' => $request->latitude,
+            'longtitude' => $request->longtitude,
+            'nomor_telepon' => $request->nomor_telepon,
+            'harga' => $request->harga,
+            'slug' => $request->nama,
         ]);
+        
+        $productId = $product->id;
+        
+        foreach ($request->file('image') as $value) {
+            $imageName = time() . '_' . $value->getClientOriginalName();
+            $value->move(public_path('images'), $imageName);
+        
+            ImageProduct::create([
+                'image' => $imageName,
+                'product_id' => $productId,
+            ]);
+        }
 
         return redirect()->route('admin.product')->with(['success' => 'Data Berhasil Disimpan!']);  
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('images')->findOrFail($id);
 
-        return view('admin.product', compact('product'));
+        return view('admin.product.detail', compact('product'));
     }
 
     /**
@@ -72,7 +89,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-    $product = Product::findOrFail($id);
+    $product = Product::with('images')->findOrFail($id);
 
     return view('admin.product.edit', compact('product'));
     }
@@ -80,47 +97,75 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'nama'     => 'required|string',
-            'deskripsi'    => 'required|string',
-            'fitur'    => 'required|string',
-            'latitude'    => 'required|string',
-            'longtitude'    => 'required|string',
+        // Validasi input
+        $request->validate([
+            'nama' => 'required|string',
+            'deskripsi' => 'required|string',
+            'fitur' => 'required|string',
+            'latitude' => 'required|string',
+            'longtitude' => 'required|string',
             'nomor_telepon' => 'required|string',
-            'harga'    => 'required|numeric',
-            'slug'    => 'required|string',
+            'harga' => 'required|numeric',
+            'slug' => 'required|string',
+            'image' => 'nullable',
+            'image.*' => 'image|mimes:jpeg,jpg,png,svg|max:5120',
         ]);
 
+        // Temukan produk berdasarkan ID
         $product = Product::findOrFail($id);
 
-        
-            $product->update([
-                'nama'     => $request->nama,
-                'deskripsi'     => $request->deskripsi,
-                'fitur'     => $request->fitur,
-                'latitude'     => $request->latitude,
-                'longtitude'     => $request->longtitude,
-                'nomor_telepon'     => $request->nomor_telepon,
-                'harga'    => $request->harga,
-                'slug'    => $request->nama,
-            ]);
+        // Update produk
+        $product->update([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'fitur' => $request->fitur,
+            'latitude' => $request->latitude,
+            'longtitude' => $request->longtitude,
+            'nomor_telepon' => $request->nomor_telepon,
+            'harga' => $request->harga,
+            'slug' => $request->slug,
+        ]);
 
-            return redirect()->route('admin.product')->with(['success' => 'Data Berhasil Diubah!']);
+        if ($request->hasFile('image')) {
+            $oldImages = $product->images;
+            foreach ($oldImages as $oldImage) {
+                \Storage::delete('images/' . $oldImage->image);
+                $oldImage->delete();
+            }
+
+            foreach ($request->file('image') as $value) {
+                $imageName = time() . '_' . $value->getClientOriginalName();
+                $value->move(public_path('images'), $imageName);
+
+                ImageProduct::create([
+                    'image' => $imageName,
+                    'product_id' => $product->id,
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.product')->with('success', 'Produk berhasil diperbarui.');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        
-        $product = Product::findOrFail($id);
-
-        $product->delete();
-
-        return redirect()->route('admin.product')->with(['success' => 'Data Berhasil Dihapus!']);
+        $product = Product::with('images')->findOrFail($id);
     
+        foreach ($product->images as $image) {
+            if (file_exists(public_path('images/' . $image->image))) {
+                unlink(public_path('images/' . $image->image));
+            }
+            $image->delete();
+        }
+        $product->delete();
+    
+        return redirect()->route('admin.product')->with('success', 'Produk berhasil dihapus.');
     }
+    
 }

@@ -6,7 +6,7 @@
 
     <h3>Table Data Transaksi</h3>
 
-    <a href="{{route('admin.transaksi.add')}}" class="btn btn-primary">Add Transaksi    </a>
+    <a href="{{route('admin.transaksi.add')}}" class="btn btn-primary mb-3">Add Transaksi</a>
 
     <div class="table-responsive">
         <table class="table table-striped jambo_table bulk_action" id="datatable">
@@ -36,8 +36,8 @@
                     <td class=" ">{{ $t->metode_pembayaran }}</td>
                     <td class=" ">{{ $t->total_harga }}</td>
                     <td class=" ">
-                        <a href="{{route('admin.transaksi.edit', $t->id)}}" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="{{route('admin.transaksi.destroy', $t->id)}}" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="{{route('admin.transaksi.edit', $t->id)}}" class="btn btn-sm btn-warning"><i class="fa-solid fa-sm fa-pen-to-square"></i></a>
+                        <a href="{{route('admin.transaksi.destroy', $t->id)}}" class="btn btn-sm btn-danger"><i class="fa-solid fa-sm fa-trash"></i></a>
                     </td>
                 </tr>
                 @endforeach
