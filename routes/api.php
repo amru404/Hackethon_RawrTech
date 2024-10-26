@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,8 @@ use App\Http\Controllers\TicketController;
 |
 */
 Route::get('/tickets', [TicketController::class, 'getTicketsByDate']);
+Route::get('/detailTickets', [TicketController::class, 'getTicketDetail']);
+Route::get('/chartTicket', [TicketController::class, 'chartTicket']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -28,10 +28,31 @@ class TicketController extends Controller
     }
 
     public function getTicketsByDate(Request $request)
+    {
+        $date = $request->query('date');
+
+        $tickets = Ticket::where('tanggal', $date)->with('product')->get();
+
+        return response()->json($tickets);
+    }
+
+
+    function chartTicket() {
+        $ticket = Ticket::pluck('tanggal');
+        
+        return response()->json($ticket);
+    }
+
+    public function getTicketDetail(Request $request)
 {
     $date = $request->query('date');
+    $productId = $request->query('product_id'); // Ambil product_id dari query string
 
-    $tickets = Ticket::where('tanggal', $date)->with('product')->get();
+    // Ambil tiket berdasarkan tanggal dan product_id yang dipilih
+    $tickets = Ticket::where('tanggal', $date)
+                     ->where('product_id', $productId)
+                     ->with('product')
+                     ->get();
 
     return response()->json($tickets);
 }

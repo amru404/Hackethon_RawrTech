@@ -1,8 +1,47 @@
-@extends('layouts.landing.app')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-@section('banner')
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="banner_section layout_padding">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Desa Wisata Leuwimalang</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{{asset('asset_landing/css/bootstrap.min.css') }}">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="{{asset('asset_landing/css/style.css') }}">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="{{asset('asset_landing/css/responsive.css') }}">
+    <!-- fevicon -->
+    <link rel="icon" href="{{asset('asset_landing/images/fevicon.png') }}" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="{{asset('asset_landing/css/jquery.mCustomScrollbar.min.css') }}">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <!-- owl stylesheets -->
+    <link rel="stylesheet" href="{{asset('asset_landing/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{asset('asset_landing/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
+</head>
+
+<body>
+    <!-- header section start -->
+    <div class="header_section">
+        <div class="container">
+            @include('layouts.landing.navbar')
+        </div>
+        <!-- banner section start -->
+        <div class="banner_section layout_padding">
             <div class="container">
                 <div id="costum_slider" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
@@ -20,39 +59,51 @@
                 </div>
             </div>
         </div>
-
-@endsection
-
-@section('content')
-<div class="services_section layout_padding">
+        <!-- banner section end -->
+    </div>
+    <!-- header section end -->
+    <!-- services section start -->
+    <div class="services_section layout_padding">
         <div class="container">
             <h1 class="services_taital">our services</h1>
             <p class="many_taital">There are many variations of passages of Lorem Ipsum </p>
             <div class="services_section2 layout_padding">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
-                        <div class="icon_1"style="font-size:80px"><i class="fa-solid fa-mug-hot"></i></div>
+                        <div class="icon_1"><img src="{{ asset('asset_landing/images/icon-1.png') }}"></div>
                         <h2 class="furnitures_text">Welcome Drink</h2>
                         <p class="dummy_text">There are many variations of passages of Lorem Ipsum available, but the
                         </p>
+                        <div class="read_bt_main">
+                            <div class="read_bt"><a href="#">Read More</a></div>
+                        </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <div class="icon_1"style="font-size:80px"><i class="fa-solid fa-user"></i></div>
+                        <div class="icon_1"><img src="{{ asset('asset_landing/images/icon-2.png') }}"></div>
                         <h2 class="furnitures_text">Free Tour Leader</h2>
                         <p class="dummy_text">There are many variations of passages of Lorem Ipsum available, but the
                         </p>
+                        <div class="read_bt_main">
+                            <div class="read_bt"><a href="#">Read More</a></div>
+                        </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <div class="icon_1"style="font-size:80px"><i class="fa-solid fa-shirt"></i></div>
+                        <div class="icon_1"><img src="{{ asset('asset_landing/images/icon-3.png') }}"></div>
                         <h2 class="furnitures_text">Free Marchandise</h2>
                         <p class="dummy_text">There are many variations of passages of Lorem Ipsum available, but the
                         </p>
+                        <div class="read_bt_main">
+                            <div class="read_bt"><a href="#">Read More</a></div>
+                        </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <div class="icon_1"style="font-size:80px"><i class="fa-solid fa-bowl-food"></i></div>
+                        <div class="icon_1"><img src="{{ asset('asset_landing/images/icon-4.png') }}"></div>
                         <h2 class="furnitures_text">Free Lunch</h2>
                         <p class="dummy_text">There are many variations of passages of Lorem Ipsum available, but the
                         </p>
+                        <div class="read_bt_main">
+                            <div class="read_bt"><a href="#">Read More</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -447,4 +498,81 @@
             </div>
         </div>
     </div>
-@endsection
+    <!-- contact section end -->
+    <!-- footer section start -->
+    <div class="footer_section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <h1 class="customer_text">INFORMATION</h1>
+                    <p class="footer_lorem_text">There are many variat
+                        ions of passages of L
+                        orem Ipsum available
+                        , but the majority h
+                        ave suffered altera
+                        tion in some form, by
+                    </p>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <h1 class="customer_text">LET US HELP YOU</h1>
+                    <p class="footer_lorem_text">There are many variat
+                        ions of passages of L
+                        orem Ipsum available
+                        , but the majority h
+                        ave suffered altera
+                        tion in some form, by
+                    </p>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <h1 class="customer_text">UseFul Links</h1>
+                    <p class="footer_lorem_text1">About Us<br>
+                        Careers<br>
+                        Sell on shopee<br>
+                        Press & News<br>
+                        Competitions<br>
+                        Terms & Conditions
+                    </p>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <h1 class="customer_text">OUR Design</h1>
+                    <p class="footer_lorem_text">There are many variat
+                        ions of passages of L
+                        orem Ipsum available
+                        , but the majority h
+                        ave suffered altera
+                        tion in some form, by
+                    </p>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email"
+                    aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  footer section end -->
+    <!-- copyright section start -->
+    <div class="copyright_section">
+        <div class="container">
+            <p class="copyright_text">2023 All Rights Reserved. Design by <a href="https://html.design">Free html
+                    Templates</a> Distribution By <a href="https://themewagon.com">ThemeWagon</a></p>
+        </div>
+        <!-- copyright section end -->
+        <!-- Javascript files-->
+        <script src="{{asset('asset_landing/js/jquery.min.js') }}"></script>
+        <script src="{{asset('asset_landing/js/popper.min.js') }}"></script>
+        <script src="{{asset('asset_landing/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{asset('asset_landing/js/jquery-3.0.0.min.js') }}"></script>
+        <script src="{{asset('asset_landing/js/plugin.js') }}"></script>
+        <!-- sidebar -->
+        <script src="{{asset('asset_landing/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+        <script src="{{asset('asset_landing/js/custom.js') }}"></script>
+        <!-- javascript -->
+        <script src="{{asset('asset_landing/js/owl.carousel.js') }}"></script>
+        <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js') }}"></script>
+</body>
+
+</html>

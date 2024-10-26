@@ -15,7 +15,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Fluid - Layouts | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Desa Wisata Leuwimalang</title>
 
     <meta name="description" content="" />
 
@@ -49,6 +49,7 @@
 
     <!-- Other necessary CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/css/demo.css') }}">
+    
 
 
     <!-- Page CSS -->

@@ -7,6 +7,7 @@
     <h3>Table Data Order</h3>
 
     <a href="{{route('admin.order.add')}}" class="btn btn-primary mb-3">Add Order</a>
+    <a href="{{route('admin.order.export')}}" class="btn btn-success mb-3">Export Excel</a>
     
     <div class="table-responsive">
         <table class="table table-striped jambo_table bulk_action" id="datatable">

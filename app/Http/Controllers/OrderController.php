@@ -6,6 +6,8 @@ use App\Models\Order;
 use App\Models\Ticket;
 use App\Models\Product;
 use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OrdersExport; 
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -227,5 +229,11 @@ class OrderController extends Controller
 
         return redirect()->route('admin.order')->with(['success' => 'Data Berhasil Dihapus!']);
     
+    }
+
+
+    public function export()
+    {
+        return Excel::download(new OrdersExport, 'Penjualan Ticket.xlsx');
     }
 }

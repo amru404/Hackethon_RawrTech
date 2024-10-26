@@ -42,8 +42,9 @@
 
                 </a>
 
+           
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" > <strong>
+                    <a class="dropdown-item btn" > <strong>
                       {{ Auth::user()->name }}
                     </strong>
                     </a>

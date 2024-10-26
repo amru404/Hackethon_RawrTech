@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Ticket;
+use App\Models\Product;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -32,5 +35,10 @@ class HomeController extends Controller
 
     function userHome(){
         return view('user.index');
+    }
+
+    public function GetChartOrder() {
+        $order = Order::pluck('tanggal_ticket');
+        return response()->json($order);
     }
 }

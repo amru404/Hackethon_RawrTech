@@ -68,15 +68,15 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item">
-              <a href="index.html" class="menu-link">
+            <li class="menu-item ">
+              <a href="{{route('admin.home') }}" class="menu-link" >
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
 
 
-            <li class="menu-item">
+            <li class="menu-item ">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="dataMaster">Data Master</div>
@@ -96,6 +96,11 @@
                 <li class="menu-item">
                   <a href="{{route('admin.ticket')}}" class="menu-link">
                     <div data-i18n="Container">Ticket</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{{route('admin.contact')}}" class="menu-link">
+                    <div data-i18n="Without navbar">Contact</div>
                   </a>
                 </li>
               </ul>
@@ -119,8 +124,15 @@
                 </li>
               </ul>
             </li>
+
+            <li class="menu-item ">
+              <a href="{{route('home') }}" class="menu-link" >
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Landing Page</div>
+              </a>
+          </li>
+
           </ul>
-          
           </ul>
 
         
